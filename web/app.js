@@ -146,7 +146,8 @@ function populateStorms() {
     drawMap();
   });
   playButton.addEventListener("click", togglePlayback);
-  selectStorm(storms[0].id);
+  const firstStorm = storms.find((storm) => storm.name === "RAGASA") ?? storms[0];
+  selectStorm(firstStorm.id);
 }
 
 function selectStorm(id) {
@@ -155,7 +156,8 @@ function selectStorm(id) {
   if (!selectedStorm) {
     throw new Error(`The selected storm "${id}" is not in the loaded track file.`);
   }
-  currentIndex = selectedStorm.points.length - 1;
+  stormSelect.value = selectedStorm.id;
+  currentIndex = 0;
   slider.min = "0";
   slider.max = String(selectedStorm.points.length - 1);
   slider.value = String(currentIndex);

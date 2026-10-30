@@ -7,11 +7,12 @@ map of hundreds of lines hard to follow. Choose a storm from the list to
 highlight its path, then drag the timeline to reveal positions one observation
 at a time. The map marker, trail, UTC timestamp and coordinates update together,
 so you can see where the storm was and decide which moment to inspect next.
-Press **Play track** to move through the observations; it becomes **Pause
-track** while playing, and pressing Play at the end starts again. Changing the
-storm or moving the timeline stops playback. If a data file is unavailable,
-the page displays an error and asks you to check the local server before
-reloading.
+The map opens with Ragasa at its first recorded position, so **Play track**
+starts a journey instead of showing the end before the viewer acts. The button
+becomes **Pause track** during playback; pressing Play at the end starts again.
+Changing the storm or moving the timeline stops playback. If a data file is
+unavailable, the page displays an error and asks you to check the local server
+before reloading.
 
 The experience answers **“Where did this storm go, and when?”**, not how strong
 it was or what damage it caused. The source does not provide complete global

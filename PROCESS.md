@@ -28,13 +28,23 @@ observations without adding an API or inventing data. I changed the generated
 track drawing to split lines at the map's date line; connecting those points
 would draw a misleading line across the whole map.
 
+## Usability refinement
+
+The first version selected the first storm alphabetically and showed its last
+observation immediately. That made Play jump back to the beginning, which
+could make the first action feel backwards. I changed the opening example to
+Ragasa and set each newly selected storm to its first observation. Play now
+moves forward from the beginning; the viewer can still drag the slider to any
+position.
+
 ## Checks
 
 I checked the NetCDF field names against the downloaded source and ran the
 plotting script on the actual data. It produced 6,426 position fixes for 117
-storms in 2025. I also loaded the browser page with the committed files, changed
-storms and timeline positions, and checked that playback advanced the position
-counter. I simulated a missing track file: the page showed an error with a
+storms in 2025. In the first browser version, I changed storms and timeline
+positions and checked that playback advanced the position counter. In the
+revised version, I also checked that Ragasa starts at fix 1 and playback moves
+forward. I simulated a missing track file: the page showed an error with a
 local-server/reload instruction, and it loaded the storms again after I restored
 the request. The page makes no remote data requests. It needs a local static
 server because browsers block its data-file requests when opened directly as
@@ -51,6 +61,3 @@ the controls. Then replace this note with a brief, anonymous record:
 - What I changed in response, or why I kept the design:
 
 Do not include the person's name or a recording.
-
-After making the trial-informed revision, commit the changes in small steps so
-the repository history records the design decision and its follow-up.
