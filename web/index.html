@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f5f4ef">
+    <title>Where storms went — 2025 tropical cyclone tracks</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="wordmark" href="./" aria-label="Where storms went home">
+        <span class="wordmark-mark" aria-hidden="true">↗</span>
+        <span>FIELD NOTES <span class="wordmark-year">/ 2025</span></span>
+      </a>
+      <span class="source-label">A GLOBAL CYCLONE ATLAS</span>
+    </header>
+
+    <main>
+      <section class="intro" aria-labelledby="page-title">
+        <p class="eyebrow">ONE YEAR · EVERY OCEAN</p>
+        <h1 id="page-title">Where storms<br><em>went.</em></h1>
+        <p class="intro-copy">
+          Follow the paths of 2025's tropical cyclones. Choose a storm, then
+          move through its recorded positions across the year.
+        </p>
+      </section>
+
+      <section class="explorer" aria-label="Interactive tropical cyclone map">
+        <div class="map-column">
+          <div class="map-heading">
+            <div>
+              <p class="eyebrow">THE PACIFIC, ATLANTIC & BEYOND</p>
+              <h2>Global track map</h2>
+            </div>
+            <p class="map-coordinate">180°W <span>—</span> 180°E</p>
+          </div>
+
+          <div class="map-frame">
+            <canvas id="storm-map" role="img" aria-label="World map showing tropical cyclone tracks">
+              Your browser does not support the canvas map.
+            </canvas>
+            <div id="map-loading" class="map-loading" role="status">Loading the 2025 track file…</div>
+          </div>
+
+          <div class="map-legend" aria-label="Map legend">
+            <span><i class="legend-line legend-all" aria-hidden="true"></i>Other storm tracks</span>
+            <span><i class="legend-line legend-selected" aria-hidden="true"></i>Selected storm</span>
+            <span><i class="legend-dot" aria-hidden="true"></i>Current position</span>
+          </div>
+        </div>
+
+        <aside class="control-panel" aria-label="Storm controls and details">
+          <div class="panel-topline">
+            <span class="eyebrow">EXPLORE THE DATA</span>
+            <span id="storm-count" class="count-pill">— storms</span>
+          </div>
+
+          <label class="control-label" for="storm-select">Choose a storm</label>
+          <select id="storm-select" disabled>
+            <option>Loading storms…</option>
+          </select>
+
+          <div class="storm-identity">
+            <p class="eyebrow">SELECTED SYSTEM</p>
+            <h2 id="storm-name">—</h2>
+            <p id="storm-id" class="storm-id">Waiting for track data</p>
+          </div>
+
+          <div class="timeline">
+            <div class="timeline-heading">
+              <label class="control-label" for="time-slider">Track through time</label>
+              <span id="point-count" class="point-count">— / —</span>
+            </div>
+            <input id="time-slider" type="range" min="0" max="0" value="0" disabled aria-label="Storm track position">
+            <div class="timeline-ends">
+              <span>FIRST FIX</span>
+              <span>LAST FIX</span>
+            </div>
+            <button id="play-button" class="play-button" type="button" disabled>
+              <span id="play-icon" aria-hidden="true">▶</span>
+              <span id="play-label">Play track</span>
+            </button>
+          </div>
+
+          <div class="observation" aria-live="polite">
+            <p class="eyebrow">CURRENT OBSERVATION · UTC</p>
+            <p id="observation-time" class="observation-time">—</p>
+            <div class="coordinates">
+              <div>
+                <span class="eyebrow">LATITUDE</span>
+                <strong id="latitude">—</strong>
+              </div>
+              <div>
+                <span class="eyebrow">LONGITUDE</span>
+                <strong id="longitude">—</strong>
+              </div>
+            </div>
+          </div>
+
+          <p class="panel-note">
+            Each point is a recorded storm position, not its wind extent or
+            impact. Use the slider or play button to follow the track.
+          </p>
+        </aside>
+      </section>
+
+      <p id="error-message" class="error-message" role="alert" hidden></p>
+
+      <footer class="page-footer">
+        <span>DATA: NOAA IBTrACS · 2025 SEASON</span>
+        <span>LAND: NATURAL EARTH · 1:110M</span>
+        <a href="../README.md">About this project ↗</a>
+      </footer>
+    </main>
+  </body>
+</html>

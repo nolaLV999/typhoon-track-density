@@ -1,9 +1,56 @@
 # Process
 
-I used GitHub Copilot to inspect the IBTrACS NetCDF fields and build the track
-parser, grid aggregation, and map. I kept the rule that counts each storm once
-per 2-degree cell rather than counting every position fix; otherwise storms with
-more recorded fixes could dominate the picture. I rejected presenting tracks as
-wind-impact areas, because this global file does not contain complete, consistent
-wind radii. I checked the field names against the downloaded file and ran the
-script on the actual data, which produced 6,426 points for 117 storms in 2025.
+## Starting idea
+
+The original project showed where 2025 tropical cyclones travelled most often,
+but a density map cannot tell the story of one storm over time. I wanted a
+curious viewer to choose a storm and answer: "Where was it, and when?"
+
+## What changed
+
+I extended the static map into a browser interaction: choose a storm, drag its
+timeline or play its observations. The highlighted trail, current map marker,
+UTC timestamp and coordinates update together. Playback can be paused; changing
+the selection or timeline stops it, and Play at the final observation restarts
+from the beginning. I kept the original density picture as a separate view,
+because it answers a different question.
+
+I used GitHub Copilot to help inspect the IBTrACS NetCDF fields and build the
+track parser, grid aggregation, map and browser page. I kept the once-per-cell
+storm counting rule; counting every position fix would let storms with more
+recorded fixes dominate the density map. I rejected showing the tracks as
+wind-impact areas because the source does not contain complete, consistent
+global wind radii.
+
+For the interactive map, I kept the suggestion to make one storm selectable
+and replayable. It gives the viewer a focused way to explore the real
+observations without adding an API or inventing data. I changed the generated
+track drawing to split lines at the map's date line; connecting those points
+would draw a misleading line across the whole map.
+
+## Checks
+
+I checked the NetCDF field names against the downloaded source and ran the
+plotting script on the actual data. It produced 6,426 position fixes for 117
+storms in 2025. I also loaded the browser page with the committed files, changed
+storms and timeline positions, and checked that playback advanced the position
+counter. I simulated a missing track file: the page showed an error with a
+local-server/reload instruction, and it loaded the storms again after I restored
+the request. The page makes no remote data requests. It needs a local static
+server because browsers block its data-file requests when opened directly as
+`file://`.
+
+## Try-out with another person — required, not completed
+
+I have not yet asked another person to try the page, so I am not claiming
+user-test evidence. Before submitting, ask someone to use it before explaining
+the controls. Then replace this note with a brief, anonymous record:
+
+- What they tried first:
+- Where they hesitated or made a mistake:
+- What I changed in response, or why I kept the design:
+
+Do not include the person's name or a recording.
+
+After making the trial-informed revision, commit the changes in small steps so
+the repository history records the design decision and its follow-up.
